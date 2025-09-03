@@ -1,6 +1,7 @@
 
 using Microsoft.AspNetCore;
 using Microsoft.Extensions.FileProviders;
+using Portal.Dal;
 using System;
 
 namespace Portal.Application;
@@ -9,15 +10,18 @@ public class Program {
     public static void Main(string[] args) {
         var builder = WebApplication.CreateBuilder(args);
 
-        // Add services to the container.
-
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
+        builder.Services.AddApplicationDbContext<PortalDbContext>(
+            builder.Configuration.GetConnectionString("PORTAL") ?? string.Empty
+        );
+
         var app = builder.Build();
 
-        // Configure the HTTP request pipeline.
+        app.Services.ApplyMigrations<PortalDbContext>();
+
         if (app.Environment.IsDevelopment()) {
             app.UseSwagger();
             app.UseSwaggerUI();
