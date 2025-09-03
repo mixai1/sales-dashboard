@@ -1,5 +1,5 @@
-using Microsoft.EntityFrameworkCore;
 using Portal.Dal;
+using Portal.Services.Hosted;
 
 namespace Sale.Generator;
 
@@ -7,9 +7,7 @@ public class Program {
     public static void Main(string[] args) {
         var builder = WebApplication.CreateBuilder(args);
 
-        builder.Services.AddDbContextFactory<PortalDbContext>(options =>
-            options.UseSqlServer(builder.Configuration.GetConnectionString("PORTAL"))
-        );
+        builder.Services.AddApplicationDbContextFactory<PortalDbContext>(builder.Configuration);
         builder.Services.AddHostedService<SaleWorker>();
 
         var app = builder.Build();

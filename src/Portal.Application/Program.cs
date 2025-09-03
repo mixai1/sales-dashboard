@@ -1,8 +1,8 @@
 
-using Microsoft.AspNetCore;
 using Microsoft.Extensions.FileProviders;
 using Portal.Dal;
-using System;
+using Portal.Services.Hosted;
+using Portal.Services.Hubs;
 
 namespace Portal.Application;
 
@@ -14,9 +14,11 @@ public class Program {
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
-        builder.Services.AddApplicationDbContext<PortalDbContext>(
-            builder.Configuration.GetConnectionString("PORTAL") ?? string.Empty
-        );
+        builder.Services
+            .AddApplicationDbContextFactory<PortalDbContext>(builder.Configuration);
+
+        builder.Services.AddHostedService<SalePollingWorker>();
+        builder.Services.AddSignalR();
 
         var app = builder.Build();
 
@@ -36,6 +38,8 @@ public class Program {
             FileProvider = new PhysicalFileProvider(browserPath),
             RequestPath = ""
         });
+
+        app.MapHub<PortalHub>("/salesHub");
 
         app.UseRouting();
         app.UseEndpoints(config => {

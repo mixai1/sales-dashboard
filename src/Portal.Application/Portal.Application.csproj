@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Portal.Dal\Portal.Dal.csproj" />
+    <ProjectReference Include="..\Portal.Services\Portal.Services.csproj" />
   </ItemGroup>
 
 </Project>
