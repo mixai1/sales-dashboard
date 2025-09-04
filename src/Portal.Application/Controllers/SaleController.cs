@@ -15,10 +15,9 @@ public class SaleController : ControllerBase {
 
     [HttpGet]
     public async Task<IActionResult> GetAll() {
-        var sales = await _dbContext.Sales
+        return Ok(await _dbContext.Sales
             .OrderByDescending(s => s.DateTimeSale)
-            .ToListAsync();
-
-        return Ok(sales);
+            .ToListAsync()
+        );
     }
 }

@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Portal.Dal\Portal.Dal.csproj" />
+    <ProjectReference Include="..\Portal.Dtos\Portal.Dtos.csproj" />
     <ProjectReference Include="..\Portal.Entities\Portal.Entities.csproj" />
   </ItemGroup>
 
