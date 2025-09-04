@@ -6,13 +6,15 @@ import { SaleModel } from '../Models/sale.model';
 export class SalesSignalRService {
   private hubConnection!: HubConnection;
 
+  private readonly urlHub: string = 'http://localhost:5000/salesHub';
+
   constructor(){
     this.startConnection();
   }
 
   public startConnection(): void {
     this.hubConnection = new HubConnectionBuilder()
-      .withUrl('http://localhost:5000/salesHub')
+      .withUrl(this.urlHub)
       .withAutomaticReconnect()
       .build();
 
@@ -20,6 +22,10 @@ export class SalesSignalRService {
       .start()
       .then(() => console.log('connected successfully'))
       .catch(err => console.error('connected error', err));
+  }
+
+  public stopConnection(): void {
+    this.hubConnection.stop();
   }
 
   public onSalesUpdate(callback: (sales: SaleModel[]) => void): void {

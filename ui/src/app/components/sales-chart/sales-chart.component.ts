@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit } from '@angular/core';
 import { SalesSignalRService } from '../../services/signalr.service';
 import { SaleModel } from '../../Models/sale.model';
 import * as echarts from 'echarts';
@@ -13,7 +13,7 @@ import * as echarts from 'echarts';
     }
   `]
 })
-export class SaleChartComponent implements OnInit {
+export class SaleChartComponent implements OnInit, OnDestroy {
   private chart!: echarts.ECharts;
   private times: string[] = [];
   private amounts: number[] = [];
@@ -29,6 +29,10 @@ export class SaleChartComponent implements OnInit {
     this.salesSignalR.onSalesUpdate((newSales: SaleModel[]) => {
       this.addData(newSales);
     });
+  }
+
+  ngOnDestroy(): void {
+    this.salesSignalR.stopConnection();
   }
 
   private initChart() {
