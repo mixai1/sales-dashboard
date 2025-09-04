@@ -10,7 +10,13 @@ public static class DalExtensions {
     ) where T : DbContext {
         string connectionString = ValidateConnectionString(configuration.GetConnectionString("PORTAL")!);
         return services.AddDbContext<T>(options => 
-            options.UseSqlServer(connectionString)
+            options.UseSqlServer(connectionString, option => {
+                option.EnableRetryOnFailure(
+                    maxRetryCount: 5,
+                    maxRetryDelay: TimeSpan.FromSeconds(10),
+                    errorNumbersToAdd: null
+                );
+            })
         );
     }
 
@@ -20,7 +26,13 @@ public static class DalExtensions {
     ) where T : DbContext {
         string connectionString = ValidateConnectionString(configuration.GetConnectionString("PORTAL")!);      
         return services.AddDbContextFactory<T>(options =>
-            options.UseSqlServer(connectionString)
+            options.UseSqlServer(connectionString, option => {
+                option.EnableRetryOnFailure(
+                    maxRetryCount: 5,
+                    maxRetryDelay: TimeSpan.FromSeconds(5),
+                    errorNumbersToAdd: null
+                );
+            })
         );
     }
 
