@@ -1,6 +1,6 @@
-import { Injectable } from "@angular/core";
-import { HubConnection, HubConnectionBuilder } from "@microsoft/signalr";
-import { Sale } from "../Models/sale.model";
+import { Injectable } from '@angular/core';
+import { HubConnection, HubConnectionBuilder } from '@microsoft/signalr';
+import { SaleModel } from '../Models/sale.model';
 
 @Injectable()
 export class SalesSignalRService {
@@ -22,7 +22,7 @@ export class SalesSignalRService {
       .catch(err => console.error('connected error', err));
   }
 
-  public onSalesUpdate(callback: (sales: Sale[]) => void): void {
+  public onSalesUpdate(callback: (sales: SaleModel[]) => void): void {
     this.hubConnection.on('ReceiveSales', (sales) => {
       callback(sales);
     });

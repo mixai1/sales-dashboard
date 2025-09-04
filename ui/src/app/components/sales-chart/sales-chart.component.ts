@@ -1,12 +1,11 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { SalesSignalRService } from '../../services/signalr.service';
-import { Sale } from '../../Models/sale.model';
+import { SaleModel } from '../../Models/sale.model';
 import * as echarts from 'echarts';
-
 
 @Component({
   selector: 'app-sale-chart',
-  template: `<div class="chart" id="saleChart"></div>`,
+  template: '<div class="chart" id="saleChart"></div>',
   styles: [`
     .chart {
       width: 100%;
@@ -27,7 +26,7 @@ export class SaleChartComponent implements OnInit {
     this.chart = echarts.init(this.elm.nativeElement.querySelector('#saleChart'));
     this.initChart();
 
-    this.salesSignalR.onSalesUpdate((newSales: Sale[]) => {
+    this.salesSignalR.onSalesUpdate((newSales: SaleModel[]) => {
       this.addData(newSales);
     });
   }
@@ -76,8 +75,8 @@ export class SaleChartComponent implements OnInit {
     });
   }
 
-  private addData(newSales: Sale[]) {
-    const grouped: Record<string, Sale[]> = {};
+  private addData(newSales: SaleModel[]) {
+    const grouped: Record<string, SaleModel[]> = {};
 
     newSales.forEach(s => {
       const time = new Date(s.dateTimeSale).toLocaleTimeString();
