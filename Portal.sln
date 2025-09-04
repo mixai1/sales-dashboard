@@ -22,6 +22,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal.Services", "src\Port
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal.Dtos", "src\Portal.Dtos\Portal.Dtos.csproj", "{A884C5C5-FE52-4410-ABC3-CC27587A464F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal.Services.Tests", "test\Portal.Services.Tests\Portal.Services.Tests.csproj", "{15480AEC-49AF-4A93-ABA6-58C983D3B8C1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,6 +58,10 @@ Global
 		{A884C5C5-FE52-4410-ABC3-CC27587A464F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A884C5C5-FE52-4410-ABC3-CC27587A464F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A884C5C5-FE52-4410-ABC3-CC27587A464F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15480AEC-49AF-4A93-ABA6-58C983D3B8C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15480AEC-49AF-4A93-ABA6-58C983D3B8C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15480AEC-49AF-4A93-ABA6-58C983D3B8C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15480AEC-49AF-4A93-ABA6-58C983D3B8C1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
