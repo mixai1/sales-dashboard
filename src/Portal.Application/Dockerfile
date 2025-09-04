@@ -8,8 +8,6 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["Portal.Application/Portal.Application.csproj", "Portal.Application/"]
-COPY ["Portal.Dal/Portal.Dal.csproj", "Portal.Dal/"]
-COPY ["Portal.Entities/Portal.Entities.csproj", "Portal.Entities/"]
 RUN dotnet restore "./Portal.Application/Portal.Application.csproj"
 COPY . .
 WORKDIR "/src/Portal.Application"
