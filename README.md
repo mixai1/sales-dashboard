@@ -7,9 +7,11 @@
 ## Steps to Start the Project
 1. cd ui
 2. #Run command: npm run deploy
+ 
 Open the solution in Visual Studio
-3. Set docker-compose as the Startup Project.
-4. Press F5
+
+4. Set docker-compose as the Startup Project.
+5. Press F5
  
 OR 
 
